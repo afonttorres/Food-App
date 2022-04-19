@@ -56,7 +56,7 @@ html, body{
     align-items: center;
     justify-content: center;
 }
-.nav_icon{
+.nav_icon, .main_title_icon{
     font-size: 1.5em !important;
     position: absolute;
     left: 80%;
@@ -93,9 +93,17 @@ html, body{
 }
 .main_title_container{
     height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
 }
 .main_title{
     font-weight: 500;
+    color: #FF7F02;
+}
+.main_title_icon{
+    left: 32%;
 }
 .card_container{
     height: 80%;
@@ -113,14 +121,19 @@ html, body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+}
+
+/* .pizza1-image{
+
 }
 
 .container-card-text{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-}
+<<<<<<< HEAD
+} */
 
 
 
