@@ -1,7 +1,10 @@
-*{
+
+.container-card{
+
     margin: 0;
     padding: 0;
 }
+
 html, body{
     height: 100vh;
     width: 100vw;
@@ -129,4 +132,59 @@ html, body{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
 } */
+=======
+}
+
+
+.shoppingicon{
+    position: relative;
+}
+
+button {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #FFFFFF;
+    background-color: #E0E0E0;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    right: 2vw;
+    bottom: 2vh;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #FDC138;
+}
+
+i {
+    color: #FFFFFF;
+}
+
+.itemsofcart {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FFFFFF;
+    background-color: #FF942C;
+    width: 24px;
+    height: 24px;
+    position: fixed;
+    right: 3.5vw;
+    bottom: 10vh; 
+    color: #FFFFFF;
+    font-size: 12px;
+    cursor: none;
+}
+
+@media screen and (max-width: 700px){
+    
+    button {
+    position: fixed;
+    right: 50vw;
+    bottom: 2vh; 
+}
+>>>>>>> 17bd9ab528d5f5f2f68bab76a4db8eeca917e08d
