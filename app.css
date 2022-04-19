@@ -58,7 +58,7 @@ body {
 
 .nav_title_wrapper {
     background-color: #FD9738;
-    width: 50%;
+    width: 30%;
     height: 50%;
     margin: 0 auto;
     border-radius: 0.25rem;
@@ -70,7 +70,7 @@ body {
 .nav_icon {
     font-size: 1.5em !important;
     position: absolute;
-    left: 80%;
+    left: 70%;
 }
 
 .nav_items_container {
@@ -186,11 +186,6 @@ body {
 .shoppingicon{
     position: relative;
 } */
-=======
-<<<<<<< HEAD
-} */
-
-
 
 .shoppingicon{
     position: fixed;
@@ -201,7 +196,6 @@ body {
     justify-items: center;
     align-items: center;
 }
->>>>>>> 7c53af042f8ff331766c1ef5f2e14c6aba408fe1
 
 button {
     border-radius: 50%;
@@ -228,24 +222,20 @@ i {
     border-width: 0.13rem;
     border-color: #FFFFFF;
     background-color: #FF942C;
-<<<<<<< HEAD
     width: 24px;
     height: 24px;
     position: fixed;
     right: 3.5vw;
     bottom: 10vh;
-=======
     width: 1.5rem;
     height: 1.5rem;
     position: absolute;
     top: -0.7rem; 
     right: 35%;
->>>>>>> 7c53af042f8ff331766c1ef5f2e14c6aba408fe1
     color: #FFFFFF;
     font-size: 0.75rem;
     cursor: none;
 }
-<<<<<<< HEAD
 
 @media screen and (max-width: 700px) {
 
@@ -255,5 +245,3 @@ i {
         bottom: 2vh;
     }
 }
-=======
->>>>>>> 7c53af042f8ff331766c1ef5f2e14c6aba408fe1
