@@ -1,0 +1,49 @@
+.shoppingicon{
+    position: relative;
+}
+
+button {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #FFFFFF;
+    background-color: #E0E0E0;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    right: 2vw;
+    bottom: 2vh;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #FDC138;
+}
+
+i {
+    color: #FFFFFF;
+}
+
+.cartitems {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FFFFFF;
+    background-color: #FF942C;
+    width: 24px;
+    height: 24px;
+    position: fixed;
+    right: 50vw;
+    bottom: 10vh; 
+    color: #FFFFFF;
+    font-size: 12px;
+    cursor: none;
+}
+
+@media screen and (max-width: 700px){
+    
+    button {
+    position: fixed;
+    right: 50vw;
+    bottom: 2vh; 
+}
