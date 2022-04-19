@@ -127,7 +127,7 @@ html, body{
     position: relative;
 }
 
-button {
+button{
     border-radius: 50%;
     border-style: solid;
     border-width: 5px;
@@ -163,12 +163,4 @@ i {
     color: #FFFFFF;
     font-size: 12px;
     cursor: none;
-}
-
-@media screen and (max-width: 700px){
-    
-    button {
-    position: fixed;
-    right: 50vw;
-    bottom: 2vh; 
 }
