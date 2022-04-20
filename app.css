@@ -203,17 +203,17 @@ button {
     border-style: solid;
     border-width: 0.30rem;
     border-color: #FFFFFF;
-    background-color: #E0E0E0;
+    background-color: #e0e0e0;
     width: 4.2rem;
     height: 4.2rem;
     cursor: pointer;
 }
 
-button:active {
+button:active{
     background-color: #FDC138;
 }
 
-i {
+.shoppingicon i {
     color: #FFFFFF;
 }
 
@@ -235,6 +235,7 @@ i {
     right: 35%;
     color: #FFFFFF;
     font-size: 0.75rem;
+<<<<<<< HEAD
     cursor: none;
 }
 
@@ -246,3 +247,7 @@ i {
         bottom: 2vh;
     }
 } */
+=======
+    cursor: default;
+}
+>>>>>>> 7599f1edd718ccd085790c1387ad75800a70aa65
