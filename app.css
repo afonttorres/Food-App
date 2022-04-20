@@ -19,7 +19,7 @@ body {
 .font {
     font-family: 'Poppins', sans-serif;
 }
-
+/*PRIMERA VISTA*/
 /*HEADER*/
 .nav_font {
     font-family: 'Bebas Neue', cursive;
@@ -242,6 +242,7 @@ body {
     display: flex;
     justify-items: center;
     align-items: center;
+    z-index: 2;
 }
 .main_button {
     border-radius: 50%;
@@ -272,6 +273,35 @@ body {
     outline: none;
 }
 
+/*SEGONA VISTA*/
+.shopping_wrapper{
+    height: 100%;
+    width: 30%;
+    background-color: #3E3935;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.checkout_container{
+    height: 80%;
+    width: 85%;
+    background-color: rgba(255, 255, 255, .81);
+    margin: 0% auto 15% auto;
+    border-radius: 2rem;
+}
+.checkout_header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    height: 20%;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+}
 @media only screen and (max-width: 767px) {
     .nav {
         background-color: #FFFFFF;
@@ -405,9 +435,6 @@ body {
     bottom: unset;
    }
 }
-
-
-
 @media only screen and (max-width: 375px) {
     .info_img{
         width: 50%;
