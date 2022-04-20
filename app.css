@@ -236,12 +236,3 @@ button:active{
     font-size: 0.75rem;
     cursor: default;
 }
-
-@media screen and (max-width: 700px) {
-
-    button {
-        position: fixed;
-        right: 50vw;
-        bottom: 2vh;
-    }
-}
