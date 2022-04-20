@@ -28,6 +28,7 @@ body {
     font-family: 'Bebas Neue', cursive;
     color: white;
     font-weight: 500;
+    font-size: medium;
 }
 
 .nav {
@@ -58,8 +59,8 @@ body {
 
 .nav_title_wrapper {
     background-color: #FD9738;
-    width: 30%;
-    height: 50%;
+    width: 25%;
+    height: 40%;
     margin: 0 auto;
     border-radius: 0.25rem;
     display: flex;
@@ -77,12 +78,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 80%;
+    width: 65%;
     margin: 0 auto;
 }
 
 .info {
-    height: 15%;
+    height: 10%;
     display: flex;
     flex-direction: row;
     background-color: #FF7F02;
@@ -106,7 +107,7 @@ body {
 }
 
 .info_img {
-    width: 15%;
+    width: 10%;
 }
 
 .info_text_container{
@@ -118,20 +119,20 @@ body {
     margin-left: 5%;
 }
 .info_title{
-    font-size: medium;
+    font-size: small;
     font-weight: 500;
 }
 .info_subtitle{
-    font-size: small;
+    font-size: x-small;
 }
 .main_container {
-    height: 55%;
+    height: 65%;
     width: 90%;
     margin: 0 auto;
 }
 
 .main_title_container {
-    height: 25%;
+    /* height: 25%; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -141,7 +142,7 @@ body {
 .main_title {
     font-weight: 500;
     color: #FF7F02;
-    height: 80%;
+    /* height: 80%; */
 }
 
 .main_title_icon {
@@ -149,23 +150,22 @@ body {
 }
 
 .card_container {
+    display: flex;
     height: 75%;
     width: 95%;
     margin: 0 auto;
     background-color: white;
-    border-radius: .25rem;
-    -webkit-box-shadow: 5px 7px 11px 0px rgba(0, 0, 0, 0.63);
-    box-shadow: 5px 7px 11px 0px rgba(0, 0, 0, 0.63);
+    border-radius: 0.25rem;
+    -webkit-box-shadow: 5px 7px 11px 0px rgb(0 0 0 / 63%);
+    box-shadow: 5px 7px 11px 0px rgb(0 0 0 / 63%);
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
-.card {
-    width: 20%;
-    height: 50%;
-    /* margin: 2%; */
-}
 
 .footer {
-    height: 15%;
+    height: 10%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -197,22 +197,23 @@ body {
     align-items: center;
 }
 
-button{
+
+.main_button {
     border-radius: 50%;
     border-style: solid;
     border-width: 0.30rem;
     border-color: #FFFFFF;
-    background-color: #E0E0E0;
+    background-color: #e0e0e0;
     width: 4.2rem;
     height: 4.2rem;
     cursor: pointer;
 }
 
-button:active {
+.main_button:active{
     background-color: #FDC138;
 }
 
-i {
+.shoppingicon i {
     color: #FFFFFF;
 }
 
@@ -234,63 +235,46 @@ i {
     right: 35%;
     color: #FFFFFF;
     font-size: 0.75rem;
-    cursor: none;
+    cursor: default;
+    outline: none;
 }
 
-@media screen and (max-width: 700px) {
-
-    button {
-        position: fixed;
-        right: 50vw;
-        bottom: 2vh;
-    }
-}
-
-.a-box {
+.card-box {
     display: inline-block;
-    width: 240px;
+    width: 20%;
     text-align: center;
+    margin: 2.5%;
+  }
+
+  .img-inner{
+    width: 100%;
   }
   
-  .img-container {
-      height: 230px;
-      width: 200px;
-      overflow: hidden;
-      border-radius: 0px 0px 20px 20px;
-      display: inline-block;
-  }
   
-  .img-container img {
-      transform: skew(0deg, -13deg);
-      height: 250px;
-      margin: -35px 0px 0px -70px;
+  .foto-pizza{
+      width: 85%;
   }
-  
-  .inner-skew {
-      display: inline-block;
-      border-radius: 20px;
-      overflow: hidden;
-      padding: 0px;
-      transform: skew(0deg, 13deg);
-      font-size: 0px;
-      margin: 30px 0px 0px 0px;
-      background: #c8c2c2;
-      height: 250px;
-      width: 200px;
-  }
+
   
   .text-container {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-    padding: 120px 20px 20px 20px;
-    border-radius: 20px;
-    background: #fff;
-    margin: -120px 0px 0px 0px;
-    line-height: 19px;
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 20%);
+    padding: 55% 10% 10% 10%;
+    border-radius: 0.25rem;
+    background: #F5F4F9;
+    font-family: 'Poppins', sans-serif;
+    margin-top: -55%;
   }
   
   .text-container h3 {
-    margin: 20px 0px 10px 0px;
-    color: #04bcff;
-    font-size: 18px;
+    margin: 10% 10% 5% 10%;
+    color: black;
+    font-size: medium;
+  }
+
+  .card-subtitle{
+      font-size: small;
+      color: rgba(0, 0, 0, 50%);
   }
