@@ -198,7 +198,7 @@ body {
     align-items: center;
 }
 
-button {
+.main_button {
     border-radius: 50%;
     border-style: solid;
     border-width: 0.30rem;
@@ -209,7 +209,7 @@ button {
     cursor: pointer;
 }
 
-button:active{
+.main_button:active{
     background-color: #FDC138;
 }
 
@@ -235,19 +235,6 @@ button:active{
     right: 35%;
     color: #FFFFFF;
     font-size: 0.75rem;
-<<<<<<< HEAD
-    cursor: none;
-}
-
-/* @media screen and (max-width: 700px) {
-
-    button {
-        position: fixed;
-        right: 50vw;
-        bottom: 2vh;
-    }
-} */
-=======
     cursor: default;
+    outline: none;
 }
->>>>>>> 7599f1edd718ccd085790c1387ad75800a70aa65
