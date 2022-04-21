@@ -87,13 +87,13 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
     } else {
         let idArr = [];
         for (let i = 0; i < shoppingList.length; i++) {
-            idArr.push(shoppingList[i].index);
+            idArr.push(shoppingList[i]['index']);
         }
-        if (!(idArr.includes(addedItem.index))) {
+        if (!(idArr.includes(addedItem['index']))) {
             shoppingList.push(addedItem);
             console.log('Item added');
         } else {
-            shoppingList[index].count++
+            shoppingList[index]['count']++
             console.log('Item added more than once')
         }
     }
@@ -128,7 +128,7 @@ function printShoppingList(name, i, path, price, count) {
     let itemPlusButton = document.createElement('p');
     itemPlusButton.classList.add('shoppingListItem_plusButton');
     itemPlusButton.id = `itemPlusButton_${i}`;
-    itemPlusButton.innerText = '+'
+    itemPlusButton.innerText = '+';
 
     //count
     let itemCount = document.createElement('p');
@@ -140,7 +140,37 @@ function printShoppingList(name, i, path, price, count) {
     let itemMinusButton = document.createElement('p');
     itemMinusButton.classList.add('shoppingListItem_minusButton');
     itemMinusButton.id = `itemMinusButton_${i + 1}`;
-    itemMinusButton.innerText = '-'
+    itemMinusButton.innerText = '-';
+
+
+    //Count buttons function
+
+    function addQuant(){
+        shoppingList[i]['count']++
+        console.log(shoppingList[i]['count'])
+        itemCount.innerText = `${shoppingList[i]['count']}`;
+        console.log(shoppingList)
+    }
+
+    function restQuant(){
+        if (shoppingList[i]['count'] > 1) {
+            shoppingList[i]['count']--
+            console.log(shoppingList[i]['count'])
+            itemCount.innerText = `${shoppingList[i]['count']}`;
+        } else if (shoppingList[i]['count'] <= 1) {
+            console.log(shoppingList)
+            itemMinusButton.removeEventListener('click', restQuant);
+            shoppingList.splice(i,1);
+            setTimeout(() => {
+                let item = document.getElementById(`pizza_${i + 1}`);
+                item.style.display = 'none';
+            }, 50);
+            console.log(shoppingList)
+        }
+    }
+
+    itemPlusButton.addEventListener('click', addQuant)
+    itemMinusButton.addEventListener('click', restQuant)
 
     //Shopping list quantity (col)
     let shoppingListItemQuantCol = document.createElement('div');
@@ -148,6 +178,7 @@ function printShoppingList(name, i, path, price, count) {
     shoppingListItemQuantCol.append(itemPlusButton, itemCount, itemMinusButton);
 
     //Shopping list item (row)
+
     let shoppingListItem = document.createElement('div');
     shoppingListItem.id = `pizza_${i + 1}`;
     shoppingListItem.classList.add('shoppingList_item');
@@ -189,6 +220,9 @@ function printCheckout() {
     }
 
 
+    //PURCHASE PRICES
+
+    //CHECKOUT BUTTON
 
     //Wrapper 2
     let checkoutContainer = document.createElement('div');
