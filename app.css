@@ -399,11 +399,20 @@ body {
     padding: 2% 0 2% 0;
 }
 
+#cost_items span, #cost_delivery span, #cost_tax span, #cost_total span{
+    font-weight: 500;
+    color: #383838;
+}
+
 #cost_total {
     border-top: 1px;
     border-top-style: solid;
-    border-top-color: #767676;
+    border-top-color: #b1b1b1;
     color: #383838;
+}
+
+#cost_total span{
+    font-size: medium;
 }
 
 
