@@ -1,55 +1,71 @@
+//MOCK DATA//
+//Array d'objectes de pizza
 const mockData = [
     {
         'name': 'California pizza',
-        'price': '$ 8.50',
+        'price': '8.50 €',
         'ingredient': 'Mushroom',
         'path': './images/california_pizza.png'
     },
     {
         'name': 'Greek pizza',
-        'price': '$ 12.99',
+        'price': '12.99 €',
         'ingredient': 'Beef',
         'path': './images/greek_pizza.png'
     },
     {
         'name': 'Sicilian pizza',
-        'price': '$ 7.90',
+        'price': '7.90 €',
         'ingredient': 'Tomato',
         'path': './images/sicilian_pizza.png'
     },
     {
         'name': 'Louis pizza',
-        'price': '$ 4.79',
+        'price': '4.79 €',
         'ingredient': 'Chicken',
         'path': './images/louis_pizza.png'
     }, {
         'name': 'California pizza',
-        'price': '$ 8.50',
+        'price': '8.50 €',
         'ingredient': 'Mushroom',
         'path': './images/california_pizza.png'
     },
     {
         'name': 'Greek pizza',
-        'price': '$ 12.99',
+        'price': '12.99 €',
         'ingredient': 'Beef',
         'path': './images/greek_pizza.png'
     },
     {
         'name': 'Sicilian pizza',
-        'price': '$ 7.90',
+        'price': '7.90 €',
         'ingredient': 'Tomato',
         'path': './images/sicilian_pizza.png'
     },
     {
         'name': 'Louis pizza',
-        'price': '$ 4.79',
+        'price': '4.79 €',
         'ingredient': 'Chicken',
         'path': './images/louis_pizza.png'
     }
 ]
 
+//Preus fixes
+let mockDeliveryCharge = '1.00 €';
+let mockTax = '0.50 €';
+
+let checkoutFlag = false;
+let purchaseCount = 0;
+let purchasePrice = '';
+
+//Array de llista de la compra iniciliatizat per fer el push
 let shoppingList = [];
 
+//Trobar i guardar en una variable el contenidor on anirà
+//tot l'html que creem amb el js
+const wrapper = document.getElementsByClassName('wrapper')[0];
+
+//Funció per renderitzar les cards del menú
 function renderCard(name, ingredient, path, price, i) {
     const cardContainer = document.getElementById('card_container');
     let card = `<div id="card_${i + 1}" class="card-box">
@@ -63,21 +79,36 @@ function renderCard(name, ingredient, path, price, i) {
                         </div>
                         <div class="card_items_row">
                             <p class="price_text">${price}</p>
-                            <div id ="add_button" onclick="addItemToShoppingList('${name}', '${ingredient}', '${path}', '${price}', ${i})" class="add_button">+</div>
+                            <div id ="add_button" onclick="addItemToShoppingList('${name}', '${ingredient}', '${path}', '${price}', ${i}); updateCheckout('shopping_wrapper'); getAmount()" class="add_button">+</div>
                         </div>
                     </div>
                 </div>`
     cardContainer.insertAdjacentHTML('beforeend', card);
 }
 
-//Count buttons function
+//Funció suma quantitat i preu
+function getAmount() {
+    purchaseCount = 0;
+    shoppingList.forEach(pizza => {
+        purchaseCount += pizza['count'];
+    })
+    if (purchaseCount > 0) {
+        document.getElementById('purchaseCount').style.display = 'block';
+        document.getElementById('purchaseCount').innerText = purchaseCount;
+    } else document.getElementById('purchaseCount').style.display = 'none';
+}
 
+
+//Funcions contador
+//Funció sumar
 function addQuant(e, index) {
     shoppingList[index]['count']++
     let itemCount = document.getElementById(`itemCount_${index}`);
     itemCount.innerText = `${shoppingList[index]['count']}`;
+    getAmount();
 }
 
+//Funció restar
 function restQuant(e, index) {
     let itemCount = document.getElementById(`itemCount_${index}`);
     let target = e.target;
@@ -102,8 +133,18 @@ function restQuant(e, index) {
         }
 
     }
+    getAmount();
 }
 
+//Update checkout
+function updateCheckout(elementClassName) {
+    if (checkoutFlag) {
+        wrapper.removeChild(document.getElementsByClassName(elementClassName)[0])
+        renderCheckout()
+    } else { }
+}
+
+//Funció per afegir pizzes a la shopping list
 function addItemToShoppingList(name, ingredient, path, price, index) {
 
     //Creo un objecte nou amb els valors de la pizza (que obtinc dels parametres)
@@ -142,8 +183,11 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
             console.log('Item added more than once')
         }
     }
+
+    console.log('Shopping list:', shoppingList)
 }
 
+//Funció per imprimir cards de la shopping list
 function renderShoppingItem(name, i, path, price, count, whereToAppend) {
 
     //img
@@ -199,23 +243,20 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
     shoppingListItem.classList.add('shoppingList_item');
     shoppingListItem.append(shoppingListItemImgCol, shoppingListItemInfoCol, shoppingListItemQuantCol);
 
-    console.log(whereToAppend);
     whereToAppend.appendChild(shoppingListItem)
 }
 
+//Funció per imprimir les cards de la shopping list en bucle
 function renderShoppingList(whereToAppend) {
     for (let i = 0; i < shoppingList.length; i++) {
         let pizzaObj = shoppingList[i];
-        console.log(whereToAppend)
         renderShoppingItem(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count'], whereToAppend);
     }
 }
 
+//Funció per renderitzar el menú de checkout
 function renderCheckout() {
-    //Trobar i guardar en una variable el contenidor on anirà
-    //tot l'html que creem amb el js
-    const wrapper = document.getElementsByClassName('wrapper')[0];
-
+    checkoutFlag = true;
     //HEADER//
     //Header text//
     let clearAll = document.createElement('p');
@@ -241,22 +282,21 @@ function renderCheckout() {
 
 
     //PURCHASE PRICES
-
     let costTotal = document.createElement('div');
     costTotal.id = "cost_total";
     costTotal.innerHTML = (`<p>Total:</p><p><span>00.00€</span></p>`)
 
     let costTax = document.createElement('div');
     costTax.id = "cost_tax";
-    costTax.innerHTML = (`<p>Tax:</p><p><span>00.00€</span></p>`)
+    costTax.innerHTML = (`<p>Tax:</p><p><span>${mockTax}</span></p>`)
 
     let costDelivery = document.createElement('div');
     costDelivery.id = "cost_delivery";
-    costDelivery.innerHTML = (`<p>Delivery charge:</p><p><span>00.00€</span></p>`)
+    costDelivery.innerHTML = (`<p>Delivery charge:</p><p><span>${mockDeliveryCharge}</span></p>`)
 
     let costItems = document.createElement('div');
     costItems.id = "cost_items";
-    costItems.innerHTML = (`<p>Item total:</p><p><span>00.00€</span></p>`)
+    costItems.innerHTML = (`<p>Item total:</p><p><span>${purchasePrice} €</span></p>`)
 
     let priceContainer = document.createElement('div');
     priceContainer.append(costItems, costDelivery, costTax, costTotal);
@@ -286,7 +326,14 @@ function renderCheckout() {
 
 //Lligo la funció que imprimeix el checkout al botó de la compra
 const shoppingButton = document.getElementsByClassName('shopping_button')[0];
-shoppingButton.addEventListener('click', renderCheckout);
+shoppingButton.addEventListener('click', () => {
+    if (checkoutFlag) {
+        wrapper.removeChild(document.getElementsByClassName('shopping_wrapper')[0])
+        checkoutFlag = false;
+    } else {
+        renderCheckout();
+    }
+});
 
 //Busca el click sobre el botó de sumar o el de restar
 //i li aplica una funció o l'altre en funció de l'id
