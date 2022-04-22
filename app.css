@@ -378,6 +378,35 @@ body {
     align-items: center;
     gap: 12.5%;
 }
+
+/* costos */
+
+#price_container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+    height: 25%;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: small;
+    color: #767676;
+}
+
+#cost_items, #cost_delivery, #cost_tax, #cost_total {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0 2% 0;
+}
+
+#cost_total {
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: #767676;
+    color: #383838;
+}
+
+
 /*MEDIA QUERIES*/
 @media only screen and (max-width: 767px) {
     /*PRIMERA VISTA*/

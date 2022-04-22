@@ -231,9 +231,26 @@ function renderCheckout() {
 
 
     //PURCHASE PRICES
+    
+    let costTotal = document.createElement('div');
+    costTotal.id="cost_total";
+    costTotal.innerHTML=(`<p>Total:</p><p>00.00€</p>`)
 
+    let costTax = document.createElement('div');
+    costTax.id="cost_tax";
+    costTax.innerHTML=(`<p>Tax:</p><p>00.00€</p>`)
 
+    let costDelivery = document.createElement('div');
+    costDelivery.id="cost_delivery";
+    costDelivery.innerHTML=(`<p>Delivery charge:</p><p>00.00€</p>`)
 
+    let costItems = document.createElement('div');
+    costItems.id="cost_items";
+    costItems.innerHTML = (`<p>Item total:</p><p>00.00€</p>`)
+
+    let priceContainer = document.createElement('div');
+    priceContainer.append(costItems,costDelivery,costTax,costTotal);
+    priceContainer.id="price_container";
 
     //CHECKOUT BUTTON
     
@@ -243,7 +260,7 @@ function renderCheckout() {
     //Wrapper 2
     let checkoutContainer = document.createElement('div');
     checkoutContainer.classList.add('checkout_container');
-    checkoutContainer.append(header, shoppingListContainer);
+    checkoutContainer.append(header, shoppingListContainer,priceContainer);
 
 
 
