@@ -220,13 +220,12 @@ function renderCheckout() {
     //Header text//
     let clearAll = document.createElement('p');
     clearAll.innerText = 'Clear All';
-    clearAll.style.fontSize = 'small';
-    clearAll.style.color = '#767676';
+    clearAll.style.fontSize = 'x-small';
 
     let yourCartFood = document.createElement('p');
     yourCartFood.innerHTML = `<span>Your Cart </span><br><span>Food</span>`;
-    yourCartFood.style.fontSize = 'x-large';
-    yourCartFood.style.fontWeight = '600';
+    yourCartFood.style.fontSize = 'large';
+    yourCartFood.style.fontWeight = 'bold';
 
     //Header//
     let header = document.createElement('div');
@@ -242,42 +241,37 @@ function renderCheckout() {
 
 
     //PURCHASE PRICES
-    
+
     let costTotal = document.createElement('div');
-    costTotal.id="cost_total";
-    costTotal.innerHTML=(`<p>Total:</p><p><span>00.00€</span></p>`)
+    costTotal.id = "cost_total";
+    costTotal.innerHTML = (`<p>Total:</p><p><span>00.00€</span></p>`)
 
     let costTax = document.createElement('div');
-    costTax.id="cost_tax";
-    costTax.innerHTML=(`<p>Tax:</p><p><span>00.00€</span></p>`)
+    costTax.id = "cost_tax";
+    costTax.innerHTML = (`<p>Tax:</p><p><span>00.00€</span></p>`)
 
     let costDelivery = document.createElement('div');
-    costDelivery.id="cost_delivery";
-    costDelivery.innerHTML=(`<p>Delivery charge:</p><p><span>00.00€</span></p>`)
+    costDelivery.id = "cost_delivery";
+    costDelivery.innerHTML = (`<p>Delivery charge:</p><p><span>00.00€</span></p>`)
 
     let costItems = document.createElement('div');
-    costItems.id="cost_items";
+    costItems.id = "cost_items";
     costItems.innerHTML = (`<p>Item total:</p><p><span>00.00€</span></p>`)
 
     let priceContainer = document.createElement('div');
-    priceContainer.append(costItems,costDelivery,costTax,costTotal);
-    priceContainer.id="price_container";
+    priceContainer.append(costItems, costDelivery, costTax, costTotal);
+    priceContainer.id = "price_container";
 
     //CHECKOUT BUTTON
-<<<<<<< HEAD
-=======
     let buttonCheckoutContainer = document.createElement('div');
     buttonCheckoutContainer.id = "checkout_button_container"
     buttonCheckoutContainer.innerHTML = (`<button>Checkout</button>`)
->>>>>>> 1e48f57f24443aa2fafcbde14be3a53568456110
-
-
 
 
     //Wrapper 2
     let checkoutContainer = document.createElement('div');
     checkoutContainer.classList.add('checkout_container');
-    checkoutContainer.append(header, shoppingListContainer,priceContainer, buttonCheckoutContainer);
+    checkoutContainer.append(header, shoppingListContainer, priceContainer, buttonCheckoutContainer);
 
 
 
