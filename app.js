@@ -3,54 +3,54 @@ const mockData = [
         'name': 'California pizza',
         'price': '$ 8.50',
         'ingredient': 'Mushroom',
-        'path': '../Food-App/images/california_pizza.png'
+        'path': './images/california_pizza.png'
     },
     {
         'name': 'Greek pizza',
         'price': '$ 12.99',
         'ingredient': 'Beef',
-        'path': '../Food-App/images/greek_pizza.png'
+        'path': './images/greek_pizza.png'
     },
     {
         'name': 'Sicilian pizza',
         'price': '$ 7.90',
         'ingredient': 'Tomato',
-        'path': '../Food-App/images/sicilian_pizza.png'
+        'path': './images/sicilian_pizza.png'
     },
     {
         'name': 'Louis pizza',
         'price': '$ 4.79',
         'ingredient': 'Chicken',
-        'path': '../Food-App/images/louis_pizza.png'
+        'path': './images/louis_pizza.png'
     }, {
         'name': 'California pizza',
         'price': '$ 8.50',
         'ingredient': 'Mushroom',
-        'path': '../Food-App/images/california_pizza.png'
+        'path': './images/california_pizza.png'
     },
     {
         'name': 'Greek pizza',
         'price': '$ 12.99',
         'ingredient': 'Beef',
-        'path': '../Food-App/images/greek_pizza.png'
+        'path': './images/greek_pizza.png'
     },
     {
         'name': 'Sicilian pizza',
         'price': '$ 7.90',
         'ingredient': 'Tomato',
-        'path': '../Food-App/images/sicilian_pizza.png'
+        'path': './images/sicilian_pizza.png'
     },
     {
         'name': 'Louis pizza',
         'price': '$ 4.79',
         'ingredient': 'Chicken',
-        'path': '../Food-App/images/louis_pizza.png'
+        'path': './images/louis_pizza.png'
     }
 ]
 
 let shoppingList = [];
 
-function printCard(name, ingredient, path, price, i) {
+function renderCard(name, ingredient, path, price, i) {
     const cardContainer = document.getElementById('card_container');
     let card = `<div id="card_${i + 1}" class="card-box">
                     <div class="img-inner">
@@ -72,6 +72,9 @@ function printCard(name, ingredient, path, price, i) {
 
 function addItemToShoppingList(name, ingredient, path, price, index) {
 
+    //Creo un objecte nou amb els valors de la pizza (que obtinc dels parametres)
+    //i li afegeixo un contador i una posició inicial que ens servirà per comprovar
+    //si ja haviem guardat la pizza
     let addedItem = {
         'name': name,
         'price': price,
@@ -82,24 +85,32 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
     }
 
     if (shoppingList.length == 0) {
+        //Quan tinc un array buit
         shoppingList.push(addedItem);
         console.log('First item added');
     } else {
-        let idArr = [];
+        //Quan l'array no està buit
+        let indexdArr = [];
+        //Guardo posició inicial de totes les pizzes de la llista de la compra
         for (let i = 0; i < shoppingList.length; i++) {
-            idArr.push(shoppingList[i]['index']);
+            indexdArr.push(shoppingList[i]['index']);
         }
-        if (!(idArr.includes(addedItem['index']))) {
+        //Guardo la posició inicial del nou item
+        let indexNewItem = addedItem['index'];
+        //Comprovo si la posició inicial del nou item ja està entre les pizzes que tinc a la llista de la compra
+        if (!(indexdArr.includes(indexNewItem))) {
+            //Si no hi és, l'afegeixo tal qual
             shoppingList.push(addedItem);
             console.log('Item added');
         } else {
+            //Si hi és, enlloc d'afegir-lo, sumo una pizza al contador
             shoppingList[index]['count']++
             console.log('Item added more than once')
         }
     }
 }
 
-function printShoppingList(name, i, path, price, count) {
+function renderShoppingList(name, i, path, price, count) {
 
     //img
     let itemImg = document.createElement('img');
@@ -133,7 +144,7 @@ function printShoppingList(name, i, path, price, count) {
     //count
     let itemCount = document.createElement('p');
     itemCount.classList.add('shoppingListItem_count');
-    itemCount.innerText = `${count}`;
+    itemCount.innerText = count;
     itemCount.id = `itemCount_${i + 1}`
 
     //minus button
@@ -147,18 +158,16 @@ function printShoppingList(name, i, path, price, count) {
 
     function addQuant(){
         shoppingList[i]['count']++
-        console.log(shoppingList[i]['count'])
         itemCount.innerText = `${shoppingList[i]['count']}`;
-        console.log(shoppingList)
     }
 
     function restQuant(){
         if (shoppingList[i]['count'] > 1) {
+            //Quan el contador de la pizza és més gran que 1 es pot restar
             shoppingList[i]['count']--
-            console.log(shoppingList[i]['count'])
             itemCount.innerText = `${shoppingList[i]['count']}`;
         } else if (shoppingList[i]['count'] <= 1) {
-            console.log(shoppingList)
+            //Si el contador de la pizza és igual o més petit que 1
             itemMinusButton.removeEventListener('click', restQuant);
             shoppingList.splice(i,1);
             setTimeout(() => {
@@ -184,10 +193,11 @@ function printShoppingList(name, i, path, price, count) {
     shoppingListItem.classList.add('shoppingList_item');
     shoppingListItem.append(shoppingListItemImgCol, shoppingListItemInfoCol, shoppingListItemQuantCol)
 
+    //ARREGLAR
     return shoppingListItem
 }
 
-function printCheckout() {
+function renderCheckout() {
     //Trobar i guardar en una variable el contenidor on anirà
     //tot l'html que creem amb el js
     const wrapper = document.getElementsByClassName('wrapper')[0];
@@ -215,14 +225,20 @@ function printCheckout() {
 
     for (let i = 0; i < shoppingList.length; i++) {
         let pizzaObj = shoppingList[i];
-        let shoppingListItem = printShoppingList(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count']);
+        let shoppingListItem = renderShoppingList(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count']);
         shoppingListContainer.appendChild(shoppingListItem);
     }
 
 
     //PURCHASE PRICES
 
+
+
+
     //CHECKOUT BUTTON
+    
+
+
 
     //Wrapper 2
     let checkoutContainer = document.createElement('div');
@@ -242,18 +258,18 @@ function printCheckout() {
 
 //Lligo la funció que imprimeix el checkout al botó de la compra
 const shoppingButton = document.getElementsByClassName('shopping_button')[0];
-shoppingButton.addEventListener('click', printCheckout);
+shoppingButton.addEventListener('click', renderCheckout);
 
 
-//Imprimeix les cards quan es renderitza la pàgina
+// //Imprimeix les cards quan es renderitza la pàgina
 document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < mockData.length; i++) {
-        let pizzaName = mockData[i]['name'];
-        let pizzaIngredient = mockData[i]['ingredient']
-        let pizzaPath = mockData[i]['path']
-        let pizzaPrice = mockData[i]['price']
-        printCard(pizzaName, pizzaIngredient, pizzaPath, pizzaPrice, i)
+        let pizza = mockData[i];
+        let pizzaName = pizza['name'];
+        let pizzaIngredient = pizza['ingredient']
+        let pizzaPath = pizza['path']
+        let pizzaPrice = pizza['price']
+        renderCard(pizzaName, pizzaIngredient, pizzaPath, pizzaPrice, i)
     }
 })
-
