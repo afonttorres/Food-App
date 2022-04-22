@@ -70,6 +70,40 @@ function renderCard(name, ingredient, path, price, i) {
     cardContainer.insertAdjacentHTML('beforeend', card);
 }
 
+//Count buttons function
+
+function addQuant(e, index) {
+    shoppingList[index]['count']++
+    let itemCount = document.getElementById(`itemCount_${index}`);
+    itemCount.innerText = `${shoppingList[index]['count']}`;
+}
+
+function restQuant(e, index) {
+    let itemCount = document.getElementById(`itemCount_${index}`);
+    let target = e.target;
+    let itemCard = target.parentElement.parentElement;
+    let parent = itemCard.parentElement;
+
+    if (shoppingList[index]['count'] > 1) {
+        //Quan el contador de la pizza és més gran que 1 es pot restar
+        shoppingList[index]['count']--
+        itemCount.innerText = `${shoppingList[index]['count']}`;
+    } else if (shoppingList[index]['count'] <= 1) {
+        //Si el contador de la pizza és igual o més petit que 1
+        target.removeEventListener('click', restQuant);
+        shoppingList.splice(index, 1);
+        //itemCard.style.display = 'none';
+
+        if (shoppingList.length > 0) {
+            parent.innerHTML = "";
+            renderShoppingList(parent)
+        } else {
+            parent.innerHTML = ''
+        }
+
+    }
+}
+
 function addItemToShoppingList(name, ingredient, path, price, index) {
 
     //Creo un objecte nou amb els valors de la pizza (que obtinc dels parametres)
@@ -110,7 +144,7 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
     }
 }
 
-function renderShoppingList(name, i, path, price, count) {
+function renderShoppingItem(name, i, path, price, count, whereToAppend) {
 
     //img
     let itemImg = document.createElement('img');
@@ -145,41 +179,13 @@ function renderShoppingList(name, i, path, price, count) {
     let itemCount = document.createElement('p');
     itemCount.classList.add('shoppingListItem_count');
     itemCount.innerText = count;
-    itemCount.id = `itemCount_${i + 1}`
+    itemCount.id = `itemCount_${i}`
 
     //minus button
     let itemMinusButton = document.createElement('p');
     itemMinusButton.classList.add('shoppingListItem_minusButton');
-    itemMinusButton.id = `itemMinusButton_${i + 1}`;
+    itemMinusButton.id = `itemMinusButton_${i}`;
     itemMinusButton.innerText = '-';
-
-
-    //Count buttons function
-
-    function addQuant(){
-        shoppingList[i]['count']++
-        itemCount.innerText = `${shoppingList[i]['count']}`;
-    }
-
-    function restQuant(){
-        if (shoppingList[i]['count'] > 1) {
-            //Quan el contador de la pizza és més gran que 1 es pot restar
-            shoppingList[i]['count']--
-            itemCount.innerText = `${shoppingList[i]['count']}`;
-        } else if (shoppingList[i]['count'] <= 1) {
-            //Si el contador de la pizza és igual o més petit que 1
-            itemMinusButton.removeEventListener('click', restQuant);
-            shoppingList.splice(i,1);
-            setTimeout(() => {
-                let item = document.getElementById(`pizza_${i + 1}`);
-                item.style.display = 'none';
-            }, 50);
-            console.log(shoppingList)
-        }
-    }
-
-    itemPlusButton.addEventListener('click', addQuant)
-    itemMinusButton.addEventListener('click', restQuant)
 
     //Shopping list quantity (col)
     let shoppingListItemQuantCol = document.createElement('div');
@@ -189,12 +195,20 @@ function renderShoppingList(name, i, path, price, count) {
     //Shopping list item (row)
 
     let shoppingListItem = document.createElement('div');
-    shoppingListItem.id = `pizza_${i + 1}`;
+    shoppingListItem.id = `pizza_${i}`;
     shoppingListItem.classList.add('shoppingList_item');
-    shoppingListItem.append(shoppingListItemImgCol, shoppingListItemInfoCol, shoppingListItemQuantCol)
+    shoppingListItem.append(shoppingListItemImgCol, shoppingListItemInfoCol, shoppingListItemQuantCol);
 
-    //ARREGLAR
-    return shoppingListItem
+    console.log(whereToAppend);
+    whereToAppend.appendChild(shoppingListItem)
+}
+
+function renderShoppingList(whereToAppend) {
+    for (let i = 0; i < shoppingList.length; i++) {
+        let pizzaObj = shoppingList[i];
+        console.log(whereToAppend)
+        renderShoppingItem(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count'], whereToAppend);
+    }
 }
 
 function renderCheckout() {
@@ -223,11 +237,7 @@ function renderCheckout() {
     shoppingListContainer.id = 'shoppingList_container';
     shoppingListContainer.classList.add('shoppingList_container');
 
-    for (let i = 0; i < shoppingList.length; i++) {
-        let pizzaObj = shoppingList[i];
-        let shoppingListItem = renderShoppingList(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count']);
-        shoppingListContainer.appendChild(shoppingListItem);
-    }
+    renderShoppingList(shoppingListContainer);
 
 
     //PURCHASE PRICES
@@ -236,7 +246,7 @@ function renderCheckout() {
 
 
     //CHECKOUT BUTTON
-    
+
 
 
 
@@ -260,8 +270,32 @@ function renderCheckout() {
 const shoppingButton = document.getElementsByClassName('shopping_button')[0];
 shoppingButton.addEventListener('click', renderCheckout);
 
+//Busca el click sobre el botó de sumar o el de restar
+//i li aplica una funció o l'altre en funció de l'id
+document.addEventListener('click', (e) => {
+    let targetId = e.target.id;
+    let targetRefIndex = targetId.indexOf('_')
+    let targetArrName = []
+    let targetArrIndex = [];
+    for (let i = 0; i < targetRefIndex; i++) {
+        targetArrName.push(targetId[i]);
+    }
+    for (let i = targetRefIndex + 1; i < targetId.length; i++) {
+        targetArrIndex.push(targetId[i])
+    }
+    let targetName = targetArrName.join('');
+    let targetIndex = targetArrIndex.join('');
 
-// //Imprimeix les cards quan es renderitza la pàgina
+    if (targetName == 'itemPlusButton') {
+        addQuant(e, targetIndex)
+    } else if (targetName == 'itemMinusButton') {
+        restQuant(e, targetIndex)
+    } else {
+        console.log('Something has been clicked')
+    }
+})
+
+//Imprimeix les cards quan es renderitza la pàgina
 document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < mockData.length; i++) {
