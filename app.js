@@ -206,12 +206,13 @@ function renderCheckout() {
     //Header text//
     let clearAll = document.createElement('p');
     clearAll.innerText = 'Clear All';
-    clearAll.style.fontSize = 'x-small';
+    clearAll.style.fontSize = 'small';
+    clearAll.style.color = '#767676';
 
     let yourCartFood = document.createElement('p');
     yourCartFood.innerHTML = `<span>Your Cart </span><br><span>Food</span>`;
-    yourCartFood.style.fontSize = 'large';
-    yourCartFood.style.fontWeight = 'bold';
+    yourCartFood.style.fontSize = 'x-large';
+    yourCartFood.style.fontWeight = '600';
 
     //Header//
     let header = document.createElement('div');
@@ -253,14 +254,17 @@ function renderCheckout() {
     priceContainer.id="price_container";
 
     //CHECKOUT BUTTON
-    
+    let buttonCheckoutContainer = document.createElement('div');
+    buttonCheckoutContainer.id = "checkout_button_container"
+    buttonCheckoutContainer.innerHTML = (`<button>Checkout</button>`)
+
 
 
 
     //Wrapper 2
     let checkoutContainer = document.createElement('div');
     checkoutContainer.classList.add('checkout_container');
-    checkoutContainer.append(header, shoppingListContainer,priceContainer);
+    checkoutContainer.append(header, shoppingListContainer,priceContainer, buttonCheckoutContainer);
 
 
 
