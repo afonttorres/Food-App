@@ -264,12 +264,9 @@ function renderCheckout() {
     priceContainer.id="price_container";
 
     //CHECKOUT BUTTON
-<<<<<<< HEAD
-=======
     let buttonCheckoutContainer = document.createElement('div');
     buttonCheckoutContainer.id = "checkout_button_container"
     buttonCheckoutContainer.innerHTML = (`<button>Checkout</button>`)
->>>>>>> 1e48f57f24443aa2fafcbde14be3a53568456110
 
 
 
