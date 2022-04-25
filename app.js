@@ -101,28 +101,32 @@ function getAmount() {
 //Funcions contador
 //Funció sumar
 function addQuant(index, whereToAppend) {
-    console.log(index);
+    // console.log('index addQuant:', index);
+    // console.log('count addQuant (abans):', shoppingList[index]['count'])
     shoppingList[index]['count']++;
+    // console.log('count addQuant (després):', shoppingList[index]['count'])
     renderShoppingList(whereToAppend)
     getAmount();
 }
 
 //Funció restar
 function restQuant(index, whereToAppend, elementTarget) {
-    // let itemCount = document.getElementById(`itemCount_${index}`);
+    console.log(index)
     let target = elementTarget;
     let itemCard = target.parentElement.parentElement;
     let parent = itemCard.parentElement;
 
     if (shoppingList[index]['count'] > 1) {
         //Quan el contador de la pizza és més gran que 1 es pot restar
-        shoppingList[index]['count']--
+        // console.log('index restQuant:', index);
+        // console.log('count restQuant (abans):', shoppingList[index]['count'])
+        shoppingList[index]['count']--;
+        // console.log('count restQuant (després):', shoppingList[index]['count'])
         renderShoppingList(whereToAppend);
     } else if (shoppingList[index]['count'] <= 1) {
         //Si el contador de la pizza és igual o més petit que 1
         target.removeEventListener('click', restQuant);
         shoppingList.splice(index, 1);
-        //itemCard.style.display = 'none';
         renderShoppingList(parent);
     }
     getAmount();
@@ -171,13 +175,19 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
             shoppingList.push(addedItem);
             console.log('Item added');
         } else {
+            console.log('comparació index array amb index added item', indexdArr, indexNewItem)
+            //CANVIAR INDEX DE LA SHOPPING LIST HAIG DE POSAR L'INDEX QUE TÉ EL QUE ANAVA A AFEGIR DINS DE LA SHOPPING LIST,
+            //NO INDEX
             //Si hi és, enlloc d'afegir-lo, sumo una pizza al contador
-            shoppingList[index]['count']++
+            console.log('index:', index);
+            console.log('count', shoppingList[index]['count'])
+            shoppingList[index]['count']++;
+            getAmount()
             console.log('Item added more than once')
         }
     }
 
-    console.log('Shopping list:', shoppingList)
+    //console.log('Shopping list:', shoppingList)
 }
 
 //Funció per imprimir cards de la shopping list
@@ -211,7 +221,7 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
     itemPlusButton.classList.add('shoppingListItem_plusButton');
     itemPlusButton.id = `itemPlusButton_${i}`;
     itemPlusButton.innerText = '+';
-    itemPlusButton.addEventListener('click', ()=>{
+    itemPlusButton.addEventListener('click', () => {
         addQuant(i, whereToAppend)
     })
 
@@ -226,7 +236,7 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
     itemMinusButton.classList.add('shoppingListItem_minusButton');
     itemMinusButton.id = `itemMinusButton_${i}`;
     itemMinusButton.innerText = '-';
-    itemMinusButton.addEventListener('click', ()=>{
+    itemMinusButton.addEventListener('click', () => {
         restQuant(i, whereToAppend, itemMinusButton)
     })
 
@@ -247,7 +257,7 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
 
 //Funció per imprimir les cards de la shopping list en bucle
 function renderShoppingList(whereToAppend) {
-    whereToAppend.innerHTML="";
+    whereToAppend.innerHTML = "";
     for (let i = 0; i < shoppingList.length; i++) {
         let pizzaObj = shoppingList[i];
         renderShoppingItem(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count'], whereToAppend);
@@ -263,7 +273,7 @@ function renderCheckout() {
     clearAll.innerText = 'Clear All';
     clearAll.style.fontSize = 'x-small';
     clearAll.style.cursor = 'pointer';
-    clearAll.onclick = ()=>{
+    clearAll.onclick = () => {
         shoppingList = [];
         getAmount();
         renderShoppingList(shoppingListContainer);
@@ -322,20 +332,20 @@ function renderCheckout() {
     //Creu tancament checkout view (view 2) del mòbil
     let closeCheckout = document.createElement('p');
     closeCheckout.classList.add('close_button_checkout');
-    closeCheckout.innerHTML=`<i class="fa-solid fa-xmark"></i>`;
+    closeCheckout.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     closeCheckout.onclick = checkoutToggle;
 
     //Wrapper 1
     let shoppingWrapper = document.createElement('div');
     shoppingWrapper.classList.add('shopping_wrapper');
-    shoppingWrapper.append(checkoutContainer,closeCheckout);
+    shoppingWrapper.append(checkoutContainer, closeCheckout);
 
 
     wrapper.appendChild(shoppingWrapper);
 }
 
 //Lligo la funció que imprimeix el checkout al botó de la compra
-function checkoutToggle(){
+function checkoutToggle() {
     if (checkoutFlag) {
         wrapper.removeChild(document.getElementsByClassName('shopping_wrapper')[0])
         checkoutFlag = false;
