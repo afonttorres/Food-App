@@ -276,6 +276,7 @@ body {
 }
 
 /*SEGONA VISTA*/
+
 .shopping_wrapper{
     height: 100%;
     width: 22.5%;
@@ -287,6 +288,11 @@ body {
     align-items: center;
     z-index: 1;
 }
+
+.close_button_checkout {
+    display: none;
+}
+
 .checkout_container{
     height: 80%;
     width: 85%;
@@ -546,6 +552,16 @@ body {
         width: 100%;
         background-color: white;
     }
+
+    .close_button_checkout{
+        position: fixed;
+        top: 2vh;
+        right: 10vw;
+        font-size: medium;
+        color: #767676;
+        display: block;
+    }
+
     .checkout_container{
         height: 90%;
         margin: 10% auto 5% auto;

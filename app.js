@@ -313,12 +313,16 @@ function renderCheckout() {
     checkoutContainer.classList.add('checkout_container');
     checkoutContainer.append(header, shoppingListContainer, priceContainer, buttonCheckoutContainer);
 
-
+    //Creu tancament checkout view (view 2) del mòbil
+    let closeCheckout = document.createElement('p');
+    closeCheckout.classList.add('close_button_checkout');
+    closeCheckout.innerHTML=`<i class="fa-solid fa-xmark"></i>`;
+    closeCheckout.onclick = checkoutToggle;
 
     //Wrapper 1
     let shoppingWrapper = document.createElement('div');
     shoppingWrapper.classList.add('shopping_wrapper');
-    shoppingWrapper.appendChild(checkoutContainer);
+    shoppingWrapper.append(checkoutContainer,closeCheckout);
 
 
     wrapper.appendChild(shoppingWrapper);
