@@ -177,7 +177,6 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
             //Si hi és, enlloc d'afegir-lo, sumo una pizza al contador
             let shoppingListPos = indexdArr.indexOf(indexNewItem);
             shoppingList[shoppingListPos]['count']++;
-            getAmount()
             console.log('Item added more than once')
         }
     }
