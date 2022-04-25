@@ -111,7 +111,6 @@ function addQuant(index, whereToAppend) {
 
 //Funció restar
 function restQuant(index, whereToAppend, elementTarget) {
-    console.log(index)
     let target = elementTarget;
     let itemCard = target.parentElement.parentElement;
     let parent = itemCard.parentElement;
@@ -175,19 +174,15 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
             shoppingList.push(addedItem);
             console.log('Item added');
         } else {
-            console.log('comparació index array amb index added item', indexdArr, indexNewItem)
-            //CANVIAR INDEX DE LA SHOPPING LIST HAIG DE POSAR L'INDEX QUE TÉ EL QUE ANAVA A AFEGIR DINS DE LA SHOPPING LIST,
-            //NO INDEX
             //Si hi és, enlloc d'afegir-lo, sumo una pizza al contador
-            console.log('index:', index);
-            console.log('count', shoppingList[index]['count'])
-            shoppingList[index]['count']++;
+            let shoppingListPos = indexdArr.indexOf(indexNewItem);
+            shoppingList[shoppingListPos]['count']++;
             getAmount()
             console.log('Item added more than once')
         }
     }
 
-    //console.log('Shopping list:', shoppingList)
+    console.log('Shopping list:', shoppingList)
 }
 
 //Funció per imprimir cards de la shopping list
