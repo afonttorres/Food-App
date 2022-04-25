@@ -325,15 +325,16 @@ function renderCheckout() {
 }
 
 //Lligo la funció que imprimeix el checkout al botó de la compra
-const shoppingButton = document.getElementsByClassName('shopping_button')[0];
-shoppingButton.addEventListener('click', () => {
+function checkoutToggle(){
     if (checkoutFlag) {
         wrapper.removeChild(document.getElementsByClassName('shopping_wrapper')[0])
         checkoutFlag = false;
     } else {
         renderCheckout();
     }
-});
+}
+const shoppingButton = document.getElementsByClassName('shopping_button')[0];
+shoppingButton.addEventListener('click', checkoutToggle);
 
 //Busca el click sobre el botó de sumar o el de restar
 //i li aplica una funció o l'altre en funció de l'id
