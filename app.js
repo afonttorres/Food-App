@@ -91,7 +91,7 @@ function renderCard(name, ingredient, path, price, i) {
 function setSMSValues() {
     let smsArr = [];
     shoppingList.forEach(element => {
-        let smsPizzaString = `${element.name} -> ${element.count}`
+        let smsPizzaString = `${element.name}: ${element.count}`
         smsArr.push(smsPizzaString);
     })
 
@@ -99,7 +99,9 @@ function setSMSValues() {
 }
 function convertShoppingList() {
     let smsData = setSMSValues();
+    //let sms = smsData.toString();
     let sms = smsData.toString();
+    sms = sms.split(',').join(', ')
     console.log(sms);
 }
 
