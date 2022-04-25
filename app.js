@@ -262,6 +262,12 @@ function renderCheckout() {
     let clearAll = document.createElement('p');
     clearAll.innerText = 'Clear All';
     clearAll.style.fontSize = 'x-small';
+    clearAll.style.cursor = 'pointer';
+    clearAll.onclick = ()=>{
+        shoppingList = [];
+        getAmount();
+        shoppingListContainer.innerHTML="";
+    }
 
     let yourCartFood = document.createElement('p');
     yourCartFood.innerHTML = `<span>Your Cart </span><br><span>Food</span>`;
