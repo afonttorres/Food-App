@@ -254,7 +254,7 @@ body {
     height: 4.2rem;
     cursor: pointer;
 }
-.main_button:active{
+.main_button:active, .main_button:focus, .main_button:hover{
     background-color: #FDC138;
 }
 .shopping_button i {
@@ -278,7 +278,7 @@ body {
 /*SEGONA VISTA*/
 .shopping_wrapper{
     height: 100%;
-    width: 30%;
+    width: 22.5%;
     background-color: #3E3935;
     position: absolute;
     top: 0;
@@ -393,6 +393,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: medium;
     color: #767676;
+    margin-top: 5%;
 }
 
 #cost_items, #cost_delivery, #cost_tax, #cost_total {
@@ -444,6 +445,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: large;
     font-weight: 500;
+    cursor: pointer;
 }
 
 
