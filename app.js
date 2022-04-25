@@ -56,7 +56,7 @@ let mockTax = '0.50 €';
 
 let checkoutFlag = false;
 let purchaseCount = 0;
-let purchasePrice = '';
+let purchasePrice = 0;
 
 //Array de llista de la compra iniciliatizat per fer el push
 let shoppingList = [];
@@ -97,7 +97,6 @@ function getAmount() {
         document.getElementById('purchaseCount').innerText = purchaseCount;
     } else document.getElementById('purchaseCount').style.display = 'none';
 }
-
 
 //Funcions contador
 //Funció sumar
@@ -163,6 +162,7 @@ function addItemToShoppingList(name, ingredient, path, price, index) {
         //Quan tinc un array buit
         shoppingList.push(addedItem);
         console.log('First item added');
+        //let msg = alert('First item added');
     } else {
         //Quan l'array no està buit
         let indexdArr = [];
