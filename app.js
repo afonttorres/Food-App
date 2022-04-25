@@ -248,6 +248,7 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
 
 //Funció per imprimir les cards de la shopping list en bucle
 function renderShoppingList(whereToAppend) {
+    whereToAppend.innerHTML="";
     for (let i = 0; i < shoppingList.length; i++) {
         let pizzaObj = shoppingList[i];
         renderShoppingItem(pizzaObj['name'], i, pizzaObj['path'], pizzaObj['price'], pizzaObj['count'], whereToAppend);
@@ -266,7 +267,8 @@ function renderCheckout() {
     clearAll.onclick = ()=>{
         shoppingList = [];
         getAmount();
-        shoppingListContainer.innerHTML="";
+        // shoppingListContainer.innerHTML="";
+        renderShoppingList(shoppingListContainer);
     }
 
     let yourCartFood = document.createElement('p');
