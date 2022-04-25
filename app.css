@@ -254,7 +254,7 @@ body {
     height: 4.2rem;
     cursor: pointer;
 }
-.main_button:active, .main_button:focus, .main_button:hover{
+.main_button:focus, .main_button:hover{
     background-color: #FDC138;
 }
 .shopping_button i {
