@@ -86,6 +86,23 @@ function renderCard(name, ingredient, path, price, i) {
     cardContainer.insertAdjacentHTML('beforeend', card);
 }
 
+//Convertir la shopping list a un string
+//Crear el nou objecte
+function setSMSValues() {
+    let smsArr = [];
+    shoppingList.forEach(element => {
+        let smsPizzaString = `${element.name} -> ${element.count}`
+        smsArr.push(smsPizzaString);
+    })
+
+    return smsArr;
+}
+function convertShoppingList() {
+    let smsData = setSMSValues();
+    let sms = smsData.toString();
+    console.log(sms);
+}
+
 //Funció suma quantitat i preu
 function getAmount() {
     purchaseCount = 0;
@@ -314,8 +331,16 @@ function renderCheckout() {
 
     //CHECKOUT BUTTON
     let buttonCheckoutContainer = document.createElement('div');
-    buttonCheckoutContainer.id = "checkout_button_container"
-    buttonCheckoutContainer.innerHTML = (`<button>Checkout</button>`)
+    buttonCheckoutContainer.id = "checkout_button_container";
+    let checkoutButton = document.createElement('button');
+    checkoutButton.id = 'checkout_button';
+    checkoutButton.innerText = 'Checkout';
+
+    checkoutButton.onclick = convertShoppingList;
+
+    buttonCheckoutContainer.appendChild(checkoutButton);
+
+
 
 
     //Wrapper 2

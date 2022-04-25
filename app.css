@@ -441,7 +441,7 @@ body {
 
 }
 
-#checkout_button_container button{
+#checkout_button{
     width: 100%;
     height: 60%;
     border-radius: 2.5rem; 
