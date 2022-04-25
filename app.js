@@ -100,37 +100,30 @@ function getAmount() {
 
 //Funcions contador
 //Funció sumar
-function addQuant(e, index) {
-    shoppingList[index]['count']++
-    let itemCount = document.getElementById(`itemCount_${index}`);
-    itemCount.innerText = `${shoppingList[index]['count']}`;
+function addQuant(index, whereToAppend) {
+    console.log(index);
+    shoppingList[index]['count']++;
+    renderShoppingList(whereToAppend)
     getAmount();
 }
 
 //Funció restar
-function restQuant(e, index) {
-    let itemCount = document.getElementById(`itemCount_${index}`);
-    let target = e.target;
+function restQuant(index, whereToAppend, elementTarget) {
+    // let itemCount = document.getElementById(`itemCount_${index}`);
+    let target = elementTarget;
     let itemCard = target.parentElement.parentElement;
     let parent = itemCard.parentElement;
 
     if (shoppingList[index]['count'] > 1) {
         //Quan el contador de la pizza és més gran que 1 es pot restar
         shoppingList[index]['count']--
-        itemCount.innerText = `${shoppingList[index]['count']}`;
+        renderShoppingList(whereToAppend);
     } else if (shoppingList[index]['count'] <= 1) {
         //Si el contador de la pizza és igual o més petit que 1
         target.removeEventListener('click', restQuant);
         shoppingList.splice(index, 1);
         //itemCard.style.display = 'none';
-
-        if (shoppingList.length > 0) {
-            parent.innerHTML = "";
-            renderShoppingList(parent)
-        } else {
-            parent.innerHTML = ''
-        }
-
+        renderShoppingList(parent);
     }
     getAmount();
 }
@@ -218,6 +211,9 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
     itemPlusButton.classList.add('shoppingListItem_plusButton');
     itemPlusButton.id = `itemPlusButton_${i}`;
     itemPlusButton.innerText = '+';
+    itemPlusButton.addEventListener('click', ()=>{
+        addQuant(i, whereToAppend)
+    })
 
     //count
     let itemCount = document.createElement('p');
@@ -230,6 +226,9 @@ function renderShoppingItem(name, i, path, price, count, whereToAppend) {
     itemMinusButton.classList.add('shoppingListItem_minusButton');
     itemMinusButton.id = `itemMinusButton_${i}`;
     itemMinusButton.innerText = '-';
+    itemMinusButton.addEventListener('click', ()=>{
+        restQuant(i, whereToAppend, itemMinusButton)
+    })
 
     //Shopping list quantity (col)
     let shoppingListItemQuantCol = document.createElement('div');
@@ -267,7 +266,6 @@ function renderCheckout() {
     clearAll.onclick = ()=>{
         shoppingList = [];
         getAmount();
-        // shoppingListContainer.innerHTML="";
         renderShoppingList(shoppingListContainer);
     }
 
@@ -347,31 +345,6 @@ function checkoutToggle(){
 }
 const shoppingButton = document.getElementsByClassName('shopping_button')[0];
 shoppingButton.addEventListener('click', checkoutToggle);
-
-//Busca el click sobre el botó de sumar o el de restar
-//i li aplica una funció o l'altre en funció de l'id
-document.addEventListener('click', (e) => {
-    let targetId = e.target.id;
-    let targetRefIndex = targetId.indexOf('_')
-    let targetArrName = []
-    let targetArrIndex = [];
-    for (let i = 0; i < targetRefIndex; i++) {
-        targetArrName.push(targetId[i]);
-    }
-    for (let i = targetRefIndex + 1; i < targetId.length; i++) {
-        targetArrIndex.push(targetId[i])
-    }
-    let targetName = targetArrName.join('');
-    let targetIndex = targetArrIndex.join('');
-
-    if (targetName == 'itemPlusButton') {
-        addQuant(e, targetIndex)
-    } else if (targetName == 'itemMinusButton') {
-        restQuant(e, targetIndex)
-    } else {
-        console.log('Something has been clicked')
-    }
-})
 
 //Imprimeix les cards quan es renderitza la pàgina
 document.addEventListener('DOMContentLoaded', () => {
