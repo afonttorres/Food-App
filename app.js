@@ -57,6 +57,7 @@ let mockTax = '0.50 €';
 let checkoutFlag = false;
 let purchaseCount = 0;
 let purchasePrice = 0;
+let totalPrice = 0;
 
 //Array de llista de la compra iniciliatizat per fer el push
 let shoppingList = [];
@@ -79,7 +80,7 @@ function renderCard(name, ingredient, path, price, i) {
                         </div>
                         <div class="card_items_row">
                             <p class="price_text">${price}</p>
-                            <div id ="add_button" onclick="addItemToShoppingList('${name}', '${ingredient}', '${path}', '${price}', ${i}); updateCheckout('shopping_wrapper'); getAmount()" class="add_button">+</div>
+                            <div id ="add_button" onclick="addItemToShoppingList('${name}', '${ingredient}', '${path}', '${price}', ${i}); updateCheckout('shopping_wrapper'); getAmount(); getPrice()" class="add_button">+</div>
                         </div>
                     </div>
                 </div>`
@@ -99,13 +100,26 @@ function setSMSValues() {
 }
 function convertShoppingList() {
     let smsData = setSMSValues();
-    //let sms = smsData.toString();
-    let sms = smsData.toString();
-    sms = sms.split(',').join(', ')
+    smsData.push(`TOTAL: ${totalPrice} €`);
+    let sms = smsData.toString().split(',').join(', ');
     console.log(sms);
 }
 
 //Funció suma quantitat i preu
+
+function getPrice(){
+    purchasePrice = 0;
+    shoppingList.forEach(pizza =>{
+        let eachPizzaTotal = parseFloat(pizza['count'])*parseFloat(pizza['price']).toFixed(2);
+        console.log(eachPizzaTotal);
+        purchasePrice += eachPizzaTotal;
+    })
+    totalPrice = parseFloat(purchasePrice)+parseFloat(mockTax)+parseFloat(mockDeliveryCharge);
+    document.getElementById('purchasePrice').innerText = `${purchasePrice.toFixed(2)} €`;
+    document.getElementById('totalPrice').innerText=`${totalPrice.toFixed(2)} €`;
+}
+
+
 function getAmount() {
     purchaseCount = 0;
     shoppingList.forEach(pizza => {
@@ -126,6 +140,7 @@ function addQuant(index, whereToAppend) {
     // console.log('count addQuant (després):', shoppingList[index]['count'])
     renderShoppingList(whereToAppend)
     getAmount();
+    getPrice();
 }
 
 //Funció restar
@@ -148,6 +163,7 @@ function restQuant(index, whereToAppend, elementTarget) {
         renderShoppingList(parent);
     }
     getAmount();
+    getPrice();
 }
 
 //Update checkout
@@ -289,6 +305,7 @@ function renderCheckout() {
     clearAll.onclick = () => {
         shoppingList = [];
         getAmount();
+        getPrice();
         renderShoppingList(shoppingListContainer);
     }
 
@@ -313,7 +330,7 @@ function renderCheckout() {
     //PURCHASE PRICES
     let costTotal = document.createElement('div');
     costTotal.id = "cost_total";
-    costTotal.innerHTML = (`<p>Total:</p><p><span>00.00€</span></p>`)
+    costTotal.innerHTML = (`<p>Total:</p><p><span id="totalPrice">${totalPrice} €</span></p>`)
 
     let costTax = document.createElement('div');
     costTax.id = "cost_tax";
@@ -325,7 +342,7 @@ function renderCheckout() {
 
     let costItems = document.createElement('div');
     costItems.id = "cost_items";
-    costItems.innerHTML = (`<p>Item total:</p><p><span>${purchasePrice} €</span></p>`)
+    costItems.innerHTML = (`<p>Item total:</p><p><span id="purchasePrice">${purchasePrice} €</span></p>`)
 
     let priceContainer = document.createElement('div');
     priceContainer.append(costItems, costDelivery, costTax, costTotal);
