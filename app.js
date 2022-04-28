@@ -330,7 +330,7 @@ function renderCheckout() {
     //PURCHASE PRICES
     let costTotal = document.createElement('div');
     costTotal.id = "cost_total";
-    costTotal.innerHTML = (`<p>Total:</p><p><span id="totalPrice">${totalPrice} €</span></p>`)
+    costTotal.innerHTML = (`<p>Total:</p><p><span id="totalPrice">${parseFloat(totalPrice).toFixed(2)} €</span></p>`)
 
     let costTax = document.createElement('div');
     costTax.id = "cost_tax";
@@ -342,7 +342,7 @@ function renderCheckout() {
 
     let costItems = document.createElement('div');
     costItems.id = "cost_items";
-    costItems.innerHTML = (`<p>Item total:</p><p><span id="purchasePrice">${purchasePrice} €</span></p>`)
+    costItems.innerHTML = (`<p>Item total:</p><p><span id="purchasePrice">${parseFloat(purchasePrice).toFixed(2)} €</span></p>`)
 
     let priceContainer = document.createElement('div');
     priceContainer.append(costItems, costDelivery, costTax, costTotal);
