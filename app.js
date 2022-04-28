@@ -146,8 +146,6 @@ function addQuant(index, whereToAppend) {
 //Funció restar
 function restQuant(index, whereToAppend, elementTarget) {
     let target = elementTarget;
-    let itemCard = target.parentElement.parentElement;
-    let parent = itemCard.parentElement;
 
     if (shoppingList[index]['count'] > 1) {
         //Quan el contador de la pizza és més gran que 1 es pot restar
@@ -160,7 +158,7 @@ function restQuant(index, whereToAppend, elementTarget) {
         //Si el contador de la pizza és igual o més petit que 1
         target.removeEventListener('click', restQuant);
         shoppingList.splice(index, 1);
-        renderShoppingList(parent);
+        renderShoppingList(whereToAppend);
     }
     getAmount();
     getPrice();
@@ -169,7 +167,7 @@ function restQuant(index, whereToAppend, elementTarget) {
 //Update checkout
 function updateCheckout(elementClassName) {
     if (checkoutFlag) {
-        wrapper.removeChild(document.getElementsByClassName(elementClassName)[0])
+        wrapper.removeChild(document.getElementsByClassName(elementClassName)[0]);
         renderCheckout()
     } else { }
 }
