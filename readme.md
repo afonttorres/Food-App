@@ -30,6 +30,8 @@ Pàgina web adaptable i amb múltiples funcionalitats creades amb JavaScript, si
 ###### Mòbil
 ![Mobile main](/images/Screenshot%20mobile%201.png "Mobile main")
 ![Mobile shopping](/images/Screenshot%20mobile%202.png "Mobile shopping")
+![Checkout](/images/Missatge.png "Checkout")
+
 
 ## AGRAÏMENTS
 Aquesta aplicació no hauria sigut possible sense la molta ajuda i la paciència dels companys del meu equip i del nostre formador del Bootcamp, així com dels creadors del material didàctic web que hem pogut consultar.
