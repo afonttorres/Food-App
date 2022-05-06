@@ -238,4 +238,3 @@ let checkoutFlag = false;
 
 
 app.init();
-document.querySelector('.test').onclick = () => checkout.restQuantity(1);

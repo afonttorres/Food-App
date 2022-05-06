@@ -37,7 +37,7 @@ const main = {
 
     ],
     renderCardList(arrObj) {
-        arrObj.map(dataObj => main.renderCard(dataObj, arrObj.indexOf(dataObj)+1));
+        arrObj.map(dataObj => main.renderCard(dataObj, arrObj.indexOf(dataObj) + 1));
     },
     renderCard(dataObj, id) {
         let card = `<div id="card-${id}" class="card-box">
@@ -56,12 +56,15 @@ const main = {
                     </div>
                 </div>`
         this.container.insertAdjacentHTML('beforeend', card);
-        app.findElement(dataObj, id);
+        let elements = app.findElement(dataObj, id);
+        this.renderElementData(dataObj, elements)
     },
-    renderElementData(element, dataObj) {
-        let key = element.id.split('-')[0];
-        if (key !== 'img') element.innerText = dataObj[key]
-        else element.src = dataObj[key]
+    renderElementData(dataObj, elements) {
+        elements.forEach(element => {
+            let key = element.id.split('-')[0];
+            if (key !== 'img') element.innerText = dataObj[key]
+            else element.src = dataObj[key]
+        });
     },
 }
 

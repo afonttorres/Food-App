@@ -7,11 +7,13 @@ const app = {
         return arr.findIndex(arrItem => arrItem.id === id);
     },
     findElement(dataObj, id) {
+        let elements = [];
         let selectors = Object.keys(dataObj);
         selectors.forEach(selector => {
             let element = document.querySelector(`#${selector}-${id}`);
-            main.renderElementData(element, dataObj)
+            elements.push(element);
         })
+        return elements;
     },
     addFunctionToEl(componentsArr) {
         componentsArr.forEach(component => {
