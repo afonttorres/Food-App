@@ -212,7 +212,7 @@ body {
     font-weight: 600;
     text-align: start;
 }
-.add_button{
+.add-button{
     align-self: flex-end;
     background-color: #FDC138;
     border-radius: 0.25rem;
@@ -221,7 +221,7 @@ body {
     font-size: small;
     cursor: pointer;
 }
-.add_button:hover{
+.add-button:hover{
     background-color: #e0e0e0;
 }
 
@@ -246,7 +246,7 @@ body {
     align-items: center;
     z-index: 2;
 }
-.main_button {
+.main-button {
     border-radius: 50%;
     border: .3rem solid #FFFFFF;
     background-color: #e0e0e0;
@@ -254,7 +254,7 @@ body {
     height: 4.2rem;
     cursor: pointer;
 }
-.main_button:focus, .main_button:hover{
+.main-button:focus, .main-button:hover{
     background-color: #FDC138;
 }
 .shopping_button i {
