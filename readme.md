@@ -2,7 +2,13 @@
 
 ## 📜 RESUM
 
-Pàgina web adaptable i amb múltiples funcionalitats creades amb JavaScript, simulant la pàgina d'una pizzeria en la que poder comprar pizzes, modificar-ne la quantitat, veure el resum del carro de la compra i rebre un missatge al fer clic a *checkout* amb els elements comprats i el preu total, actualment aquest missatge es mostra a la consola. Treball en equip.
+Pàgina web adaptable i amb múltiples funcionalitats creades amb JavaScript, simulant la pàgina d'una pizzeria en la que poder comprar pizzes, modificar-ne la quantitat, veure el resum del carro de la compra i rebre un missatge al fer clic a *checkout* amb els elements comprats i el preu total, actualment aquest missatge es mostra a la consola. 
+
+## 🌐 SISTEMA DE TREBALL
+Ha sigut un treball en equip en el que hem fet ús de les següents eines col·laboratives:
+- Figma, per elaborar el prototip.
+- Trello, per administrar el kanban.
+- GitHub, per editar el codi conjuntament.
 
 ## 💻 TECNOLOGIES
 - HTML 5
