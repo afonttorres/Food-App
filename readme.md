@@ -1,4 +1,4 @@
-# FOOD APP
+# FOOD APP 🍕
 
 ## 📜 RESUM
 
